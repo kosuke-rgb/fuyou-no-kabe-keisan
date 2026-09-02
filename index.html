@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>扶養の壁チェッカー | 103万・106万・130万・150万をまとめて確認</title>
+<meta name="description" content="年収の見込み額を入れるだけで、住民税・所得税・社会保険・配偶者控除に関わる扶養の壁(100万・103万・106万・130万・150万・201万)のうち、どこまで超えているか、次の壁まであといくらかをまとめて確認できる無料ツール。">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://webtools-labs.com/fuyou-no-kabe-keisan/">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2370765779014113" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NKK5TXCQEK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NKK5TXCQEK');
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230f766e'/%3E%3Ctext x='50' y='68' font-size='60' text-anchor='middle' fill='white' font-family='sans-serif'%3E%EF%BF%A5%3C/text%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="扶養の壁チェッカー | 103万・106万・130万・150万をまとめて確認">
+<meta property="og:description" content="年収を入れるだけで、扶養に関わる各ラインのうちどこまで超えているか、次の壁まであといくらかが分かります。">
+<meta property="og:url" content="https://webtools-labs.com/fuyou-no-kabe-keisan/">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="扶養の壁チェッカー">
+<meta name="twitter:description" content="年収から扶養の壁(103万・106万・130万・150万等)を一括チェックできる無料ツール。">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "扶養の壁チェッカー",
+  "url": "https://webtools-labs.com/fuyou-no-kabe-keisan/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "description": "年収の見込み額から、住民税・所得税・社会保険・配偶者控除に関わる扶養の壁のうち、どこまで超えているか、次の壁まであといくらかを一括チェックできる無料ツール。",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" },
+  "inLanguage": "ja"
+}
+</script>
+<style>
+:root {
+  --bg: #ffffff;
+  --surface-2: #f7f7f7;
+  --ink: #1a1a1a;
+  --muted: #767676;
+  --line: #e3e3e3;
+  --accent: #0f766e;
+  --best-bg: #f0f8f6;
+  --warn-bg: #fff7ed;
+  --warn-ink: #9a5b00;
+  --crossed: #9a5b00;
+  --crossed-bg: #fff7ed;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+.page { max-width: 720px; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+header.masthead { margin-bottom: 1.5rem; }
+h1 {
+  font-weight: 700;
+  font-size: clamp(1.4rem, 4.5vw, 1.7rem);
+  margin: 0 0 0.7rem;
+  letter-spacing: 0.01em;
+}
+p.lede { color: var(--muted); margin: 0; max-width: 60ch; font-size: 0.95rem; }
+.updated-note { display: block; margin-top: 0.9rem; font-size: 0.78rem; color: var(--muted); }
+
+.notice-box {
+  background: var(--warn-bg); color: var(--warn-ink); border-radius: 8px;
+  padding: 0.9rem 1.1rem; font-size: 0.85rem; margin-bottom: 2rem;
+}
+
+section { margin-bottom: 2.5rem; }
+h2 { font-size: 1.05rem; font-weight: 700; margin: 0 0 1rem; }
+
+.field-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem; }
+.field { flex: 1; min-width: 180px; }
+.field label { display: block; font-size: 0.83rem; color: var(--muted); margin-bottom: 0.35rem; }
+.field input[type="number"], .field select {
+  width: 100%; font-variant-numeric: tabular-nums; font-size: 1.05rem; font-family: inherit;
+  padding: 0.55rem 0.7rem; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--bg); color: var(--ink);
+}
+.field input:focus, .field select:focus { outline: none; border-color: var(--accent); }
+
+.summary-card {
+  background: var(--best-bg); border-radius: 10px; padding: 1.1rem 1.3rem; margin-bottom: 1.5rem;
+}
+.summary-card .label { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.3rem; }
+.summary-card .value { font-size: 1.3rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.summary-card .sub { font-size: 0.8rem; color: var(--muted); margin-top: 0.3rem; }
+
+.wall-list { display: flex; flex-direction: column; gap: 0.7rem; }
+.wall-card {
+  border: 1px solid var(--line); border-radius: 10px; padding: 0.9rem 1.1rem;
+  display: flex; gap: 1rem; align-items: flex-start;
+}
+.wall-card.crossed { background: var(--crossed-bg); border-color: var(--crossed); }
+.wall-amount {
+  font-weight: 700; font-variant-numeric: tabular-nums; font-size: 1.05rem; min-width: 5.2rem;
+}
+.wall-card.crossed .wall-amount { color: var(--crossed); }
+.wall-body { flex: 1; }
+.wall-title { font-weight: 700; font-size: 0.92rem; margin-bottom: 0.25rem; }
+.wall-desc { font-size: 0.84rem; color: var(--muted); }
+.wall-status { font-size: 0.78rem; margin-top: 0.35rem; font-weight: 700; }
+.wall-status.crossed { color: var(--crossed); }
+.wall-status.remaining { color: var(--accent); }
+
+.disclaimer { font-size: 0.78rem; color: var(--muted); margin-top: 1rem; }
+
+.ad-slot { margin: 2.5rem 0; text-align: center; min-height: 100px; }
+
+.contact-box textarea {
+  width: 100%; min-height: 6rem; font-family: inherit; font-size: 0.92rem;
+  padding: 0.7rem; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink);
+  resize: vertical; margin-bottom: 0.6rem;
+}
+.contact-box input[type="email"] {
+  width: 100%; font-family: inherit; font-size: 0.92rem;
+  padding: 0.6rem 0.7rem; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink);
+  margin-bottom: 0.6rem;
+}
+.contact-box textarea:focus, .contact-box input:focus { outline: none; border-color: var(--accent); }
+.contact-box button {
+  font-family: inherit; font-weight: 700; font-size: 0.9rem; padding: 0.6rem 1.4rem;
+  border: none; border-radius: 6px; background: var(--accent); color: #fff; cursor: pointer;
+}
+.contact-box button:disabled { opacity: 0.5; cursor: not-allowed; }
+.contact-status { font-size: 0.85rem; margin-top: 0.6rem; }
+.contact-status.ok { color: var(--accent); }
+.contact-status.err { color: #b91c1c; }
+
+footer.site-footer {
+  margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line);
+  font-size: 0.78rem; color: var(--muted);
+}
+footer.site-footer p { margin: 0 0 0.5rem; }
+footer.site-footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <h1>扶養の壁チェッカー</h1>
+    <p class="lede">年収の見込み額を入れるだけで、住民税・所得税・社会保険・配偶者控除に関わる扶養の壁のうち、どこまで超えているか、次の壁まであといくらかをまとめて確認できます。</p>
+    <span class="updated-note">基準額 最終確認日: 2026年9月2日</span>
+  </header>
+
+  <div class="notice-box">
+    ⚠️ 扶養に関する金額基準は税制改正でたびたび見直されています（103万円の壁は近年の改正で引き上げが議論・実施されており、勤務先や年度によって基準が異なる場合があります）。本ツールの金額は一般的に広く知られている目安であり、最新の正確な基準は国税庁・日本年金機構・勤務先の担当窓口で必ずご確認ください。
+  </div>
+
+  <section>
+    <h2>あなたの状況を入力</h2>
+    <div class="field-row">
+      <div class="field">
+        <label for="income">今年の年収見込み（円）</label>
+        <input type="number" id="income" min="0" step="10000" value="1000000">
+      </div>
+      <div class="field">
+        <label for="dependType">扶養してくれている人</label>
+        <select id="dependType">
+          <option value="parent">親（学生・アルバイトなど）</option>
+          <option value="spouse">配偶者（夫・妻）</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="companySize">勤務先の従業員数</label>
+        <select id="companySize">
+          <option value="large">51人以上</option>
+          <option value="small">50人以下</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="summary-card" id="summaryCard"></div>
+
+    <div class="wall-list" id="wallList"></div>
+    <p class="disclaimer">社会保険の壁（106万円・130万円）は、週の労働時間・雇用見込み期間などの条件も関わります。ここでは年収額のみで簡易判定しています。正確な判定は勤務先の人事・労務担当にご確認ください。</p>
+  </section>
+
+  <div class="ad-slot">
+    <ins class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-2370765779014113"
+      data-ad-slot="3021985784"
+      data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <section class="contact-box">
+    <h2>ご意見・追加してほしい機能</h2>
+    <p class="lede" style="margin-bottom:0.9rem;">気づいたことや、あったら便利な機能があれば教えてください。</p>
+    <form id="contactForm">
+      <input type="email" id="contactEmail" placeholder="返信が必要な場合はメールアドレス（任意）">
+      <textarea id="contactMessage" placeholder="ご意見・ご要望をどうぞ" required></textarea>
+      <button type="submit" id="contactSubmit">送信する</button>
+      <p class="contact-status" id="contactStatus"></p>
+    </form>
+  </section>
+
+  <footer class="site-footer">
+    <p>本ツールの金額基準は一般的に知られている目安であり、正確性を保証するものではありません。税制・社会保険の基準は改正されることがあります。正確な情報は国税庁・日本年金機構・勤務先の担当窓口でご確認ください。</p>
+    <p>あわせて使える：
+      <a href="https://webtools-labs.com/revolving-risoku-keisan/">リボ払い・分割払い 実質利息計算ツール</a> ／
+      <a href="https://webtools-labs.com/yukyu-hiyou-keisan/">有給休暇 付与日数計算ツール</a> ／
+      <a href="https://webtools-labs.com/taishoku-yukyu-keisan/">退職時の有給消化シミュレーター</a>
+    </p>
+    <p>当サイトは広告を掲載する場合があります。</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var WALLS = [
+    { amount: 1000000, title: '住民税がかかり始める（100万円の壁）', desc: '自治体により98万円前後が目安。超えると住民税(所得割)が発生し始めます。', for: ['parent', 'spouse'] },
+    { amount: 1030000, title: '所得税がかかり始める（103万円の壁）', desc: '超えた分に所得税がかかり始めます。学生の場合、親の税制上の扶養控除にも関わるラインです。', for: ['parent', 'spouse'] },
+    { amount: 1060000, title: '社会保険の加入義務（106万円の壁）', desc: '従業員51人以上の勤務先で、週20時間以上勤務などの条件を満たすと社会保険への加入義務が生じます。', for: ['parent', 'spouse'], companyOnly: 'large' },
+    { amount: 1300000, title: '社会保険の扶養から外れる（130万円の壁）', desc: '親・配偶者の社会保険の扶養から外れ、自分で保険料を負担することになります。', for: ['parent', 'spouse'] },
+    { amount: 1500000, title: '配偶者特別控除が段階的に減り始める（150万円の壁）', desc: '扶養する配偶者側の税負担（配偶者特別控除の減少）が始まります。', for: ['spouse'] },
+    { amount: 2010000, title: '配偶者特別控除が消滅（201万円の壁）', desc: 'これを超えると配偶者特別控除がなくなります。', for: ['spouse'] }
+  ];
+
+  function yen(n) { return Math.round(n).toLocaleString('ja-JP') + '円'; }
+
+  var incomeInput = document.getElementById('income');
+  var dependTypeSelect = document.getElementById('dependType');
+  var companySizeSelect = document.getElementById('companySize');
+  var summaryCard = document.getElementById('summaryCard');
+  var wallList = document.getElementById('wallList');
+
+  function render() {
+    var income = Math.max(0, Number(incomeInput.value) || 0);
+    var dependType = dependTypeSelect.value;
+    var companySize = companySizeSelect.value;
+
+    var applicable = WALLS.filter(function (w) {
+      if (w.for.indexOf(dependType) === -1) return false;
+      if (w.companyOnly && w.companyOnly !== companySize) return false;
+      return true;
+    });
+
+    var nextWall = null;
+    applicable.forEach(function (w) {
+      if (income < w.amount && (!nextWall || w.amount < nextWall.amount)) nextWall = w;
+    });
+
+    if (nextWall) {
+      summaryCard.innerHTML =
+        '<div class="label">次の壁まで</div>' +
+        '<div class="value">あと ' + yen(nextWall.amount - income) + '</div>' +
+        '<div class="sub">' + nextWall.title + '（' + yen(nextWall.amount) + '）</div>';
+    } else {
+      summaryCard.innerHTML =
+        '<div class="label">状況</div>' +
+        '<div class="value">すべての壁を超えています</div>' +
+        '<div class="sub">扶養の範囲では収まらない年収です</div>';
+    }
+
+    wallList.innerHTML = applicable.map(function (w) {
+      var crossed = income >= w.amount;
+      var statusHtml = crossed
+        ? '<div class="wall-status crossed">超えています</div>'
+        : '<div class="wall-status remaining">あと ' + yen(w.amount - income) + '</div>';
+      return '<div class="wall-card' + (crossed ? ' crossed' : '') + '">' +
+        '<div class="wall-amount">' + (w.amount / 10000) + '万円</div>' +
+        '<div class="wall-body">' +
+          '<div class="wall-title">' + w.title + '</div>' +
+          '<div class="wall-desc">' + w.desc + '</div>' +
+          statusHtml +
+        '</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  [incomeInput, dependTypeSelect, companySizeSelect].forEach(function (el) {
+    el.addEventListener('input', render);
+    el.addEventListener('change', render);
+  });
+
+  render();
+
+  var WEB3FORMS_ACCESS_KEY = '4551c9fd-4327-4bd4-97e0-8b93d85fd077';
+  var contactForm = document.getElementById('contactForm');
+  var contactStatus = document.getElementById('contactStatus');
+  var contactSubmit = document.getElementById('contactSubmit');
+
+  contactForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    contactSubmit.disabled = true;
+    contactStatus.textContent = '送信中...';
+    contactStatus.className = 'contact-status';
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: '扶養の壁チェッカーへのお問い合わせ',
+        email: document.getElementById('contactEmail').value || 'noreply@example.com',
+        message: document.getElementById('contactMessage').value
+      })
+    }).then(function (res) { return res.json(); }).then(function (data) {
+      contactSubmit.disabled = false;
+      if (data.success) {
+        contactStatus.textContent = '送信しました。ありがとうございます！';
+        contactStatus.className = 'contact-status ok';
+        contactForm.reset();
+      } else {
+        contactStatus.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
+        contactStatus.className = 'contact-status err';
+      }
+    }).catch(function () {
+      contactSubmit.disabled = false;
+      contactStatus.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
+      contactStatus.className = 'contact-status err';
+    });
+  });
+})();
+</script>
+</body>
+</html>
