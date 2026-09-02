@@ -127,11 +127,6 @@ h2 { font-size: 1.05rem; font-weight: 700; margin: 0 0 1rem; }
 .share-line { background: #06c755; }
 .share-fb { background: #1877f2; }
 .share-hatena { background: #00a4de; }
-.share-image {
-  background: linear-gradient(45deg, #f9ce34, #ee2a7b 45%, #6228d7);
-  border: none; cursor: pointer; font-family: inherit;
-}
-.share-image-status { font-size: 0.78rem; color: var(--muted); margin-top: 0.6rem; min-height: 1.2em; }
 
 .ad-slot { margin: 2.5rem 0; text-align: center; min-height: 100px; }
 
@@ -207,9 +202,7 @@ footer.site-footer a { color: var(--accent); }
       <a class="share-btn share-line" id="shareLine" href="#" target="_blank" rel="noopener">LINEで送る</a>
       <a class="share-btn share-fb" id="shareFb" href="#" target="_blank" rel="noopener">Facebookでシェア</a>
       <a class="share-btn share-hatena" id="shareHatena" href="#" target="_blank" rel="noopener">はてブする</a>
-      <button type="button" class="share-btn share-image" id="shareImageBtn">画像でシェア</button>
     </div>
-    <p class="share-image-status" id="shareImageStatus"></p>
   </section>
 
   <div class="ad-slot">
@@ -266,9 +259,6 @@ footer.site-footer a { color: var(--accent); }
   var shareLine = document.getElementById('shareLine');
   var shareFb = document.getElementById('shareFb');
   var shareHatena = document.getElementById('shareHatena');
-  var shareImageBtn = document.getElementById('shareImageBtn');
-  var shareImageStatus = document.getElementById('shareImageStatus');
-  var cardData = null;
 
   function render() {
     var income = Math.max(0, Number(incomeInput.value) || 0);
@@ -293,10 +283,6 @@ footer.site-footer a { color: var(--accent); }
         '<div class="sub">' + nextWall.title + '（' + yen(nextWall.amount) + '）</div>';
       var shareText = '扶養の壁、次の「' + nextWall.title + '」まであと ' + yen(nextWall.amount - income) + ' でした\n\n' +
         '扶養の壁チェッカー';
-      cardData = {
-        headline: 'あと ' + yen(nextWall.amount - income),
-        subtitle: nextWall.title
-      };
     } else {
       summaryCard.innerHTML =
         '<div class="label">状況</div>' +
@@ -304,10 +290,6 @@ footer.site-footer a { color: var(--accent); }
         '<div class="sub">扶養の範囲では収まらない年収です</div>';
       var shareText = '年収を入れて計算したら、扶養のすべての壁を超えていました\n\n' +
         '扶養の壁チェッカー';
-      cardData = {
-        headline: 'すべての壁を突破',
-        subtitle: '扶養の範囲では収まらない年収です'
-      };
     }
     shareX.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText) + '&url=' + encodeURIComponent('https://webtools-labs.com/fuyou-no-kabe-keisan/');
     shareLine.href = 'https://line.me/R/msg/text/?' + encodeURIComponent(shareText + '\nhttps://webtools-labs.com/fuyou-no-kabe-keisan/');
@@ -336,101 +318,6 @@ footer.site-footer a { color: var(--accent); }
   });
 
   render();
-
-  function wrapLines(ctx, text, maxWidth) {
-    var words = text.split('');
-    var lines = [];
-    var current = '';
-    for (var i = 0; i < words.length; i++) {
-      var test = current + words[i];
-      if (ctx.measureText(test).width > maxWidth && current) {
-        lines.push(current);
-        current = words[i];
-      } else {
-        current = test;
-      }
-    }
-    if (current) lines.push(current);
-    return lines;
-  }
-
-  function drawResultCard() {
-    var canvas = document.createElement('canvas');
-    canvas.width = 1080;
-    canvas.height = 1080;
-    var ctx = canvas.getContext('2d');
-
-    ctx.fillStyle = '#f7f7f7';
-    ctx.fillRect(0, 0, 1080, 1080);
-    ctx.fillStyle = '#0f766e';
-    ctx.fillRect(0, 0, 1080, 18);
-
-    ctx.textAlign = 'center';
-    ctx.fillStyle = '#0f766e';
-    ctx.font = 'bold 42px sans-serif';
-    ctx.fillText('扶養の壁チェッカー', 540, 220);
-
-    ctx.fillStyle = '#1a1a1a';
-    ctx.font = 'bold 96px sans-serif';
-    var headlineLines = wrapLines(ctx, cardData.headline, 920);
-    var headlineY = 480 - (headlineLines.length - 1) * 55;
-    headlineLines.forEach(function (line, i) {
-      ctx.fillText(line, 540, headlineY + i * 110);
-    });
-
-    ctx.fillStyle = '#767676';
-    ctx.font = '40px sans-serif';
-    var subtitleLines = wrapLines(ctx, cardData.subtitle, 880);
-    var subtitleY = headlineY + headlineLines.length * 110 + 20;
-    subtitleLines.forEach(function (line, i) {
-      ctx.fillText(line, 540, subtitleY + i * 58);
-    });
-
-    ctx.fillStyle = '#0f766e';
-    ctx.font = 'bold 34px sans-serif';
-    ctx.fillText('webtools-labs.com/fuyou-no-kabe-keisan/', 540, 990);
-
-    return canvas;
-  }
-
-  shareImageBtn.addEventListener('click', function () {
-    if (!cardData) return;
-    var canvas = drawResultCard();
-    shareImageStatus.textContent = '画像を作成しています...';
-
-    canvas.toBlob(function (blob) {
-      if (!blob) {
-        shareImageStatus.textContent = '画像の作成に失敗しました。';
-        return;
-      }
-      var file = new File([blob], 'fuyou-no-kabe.png', { type: 'image/png' });
-
-      if (navigator.canShare && navigator.canShare({ files: [file] })) {
-        navigator.share({
-          files: [file],
-          title: '扶養の壁チェッカー'
-        }).then(function () {
-          shareImageStatus.textContent = '';
-        }).catch(function (err) {
-          if (err && err.name === 'AbortError') {
-            shareImageStatus.textContent = '';
-          } else {
-            shareImageStatus.textContent = '共有できませんでした。もう一度お試しください。';
-          }
-        });
-      } else {
-        var url = URL.createObjectURL(blob);
-        var a = document.createElement('a');
-        a.href = url;
-        a.download = 'fuyou-no-kabe.png';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        setTimeout(function () { URL.revokeObjectURL(url); }, 5000);
-        shareImageStatus.textContent = '画像を保存しました。Instagram等のアプリから投稿にお使いください。';
-      }
-    }, 'image/png');
-  });
 
   var WEB3FORMS_ACCESS_KEY = '4551c9fd-4327-4bd4-97e0-8b93d85fd077';
   var contactForm = document.getElementById('contactForm');
