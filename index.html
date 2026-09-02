@@ -411,8 +411,12 @@ footer.site-footer a { color: var(--accent); }
           title: '扶養の壁チェッカー'
         }).then(function () {
           shareImageStatus.textContent = '';
-        }).catch(function () {
-          shareImageStatus.textContent = '';
+        }).catch(function (err) {
+          if (err && err.name === 'AbortError') {
+            shareImageStatus.textContent = '';
+          } else {
+            shareImageStatus.textContent = '共有できませんでした。もう一度お試しください。';
+          }
         });
       } else {
         var url = URL.createObjectURL(blob);
