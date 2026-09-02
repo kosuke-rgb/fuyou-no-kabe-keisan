@@ -117,6 +117,14 @@ h2 { font-size: 1.05rem; font-weight: 700; margin: 0 0 1rem; }
 
 .disclaimer { font-size: 0.78rem; color: var(--muted); margin-top: 1rem; }
 
+.share-btn {
+  display: inline-flex; align-items: center; gap: 0.45rem; margin-top: 1.1rem;
+  padding: 0.55rem 1.1rem; border-radius: 999px; background: #000; color: #fff;
+  text-decoration: none; font-size: 0.85rem; font-weight: 700;
+}
+.share-btn:hover { opacity: 0.85; }
+.share-btn svg { width: 14px; height: 14px; fill: #fff; }
+
 .ad-slot { margin: 2.5rem 0; text-align: center; min-height: 100px; }
 
 .contact-box textarea {
@@ -186,6 +194,10 @@ footer.site-footer a { color: var(--accent); }
 
     <div class="wall-list" id="wallList"></div>
     <p class="disclaimer">社会保険の壁（106万円・130万円）は、週の労働時間・雇用見込み期間などの条件も関わります。ここでは年収額のみで簡易判定しています。正確な判定は勤務先の人事・労務担当にご確認ください。</p>
+    <a class="share-btn" id="shareBtn" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      結果をシェア
+    </a>
   </section>
 
   <div class="ad-slot">
@@ -238,6 +250,7 @@ footer.site-footer a { color: var(--accent); }
   var companySizeSelect = document.getElementById('companySize');
   var summaryCard = document.getElementById('summaryCard');
   var wallList = document.getElementById('wallList');
+  var shareBtn = document.getElementById('shareBtn');
 
   function render() {
     var income = Math.max(0, Number(incomeInput.value) || 0);
@@ -260,12 +273,17 @@ footer.site-footer a { color: var(--accent); }
         '<div class="label">次の壁まで</div>' +
         '<div class="value">あと ' + yen(nextWall.amount - income) + '</div>' +
         '<div class="sub">' + nextWall.title + '（' + yen(nextWall.amount) + '）</div>';
+      var shareText = '扶養の壁、次の「' + nextWall.title + '」まであと ' + yen(nextWall.amount - income) + ' でした\n\n' +
+        '扶養の壁チェッカー';
     } else {
       summaryCard.innerHTML =
         '<div class="label">状況</div>' +
         '<div class="value">すべての壁を超えています</div>' +
         '<div class="sub">扶養の範囲では収まらない年収です</div>';
+      var shareText = '年収を入れて計算したら、扶養のすべての壁を超えていました\n\n' +
+        '扶養の壁チェッカー';
     }
+    shareBtn.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText) + '&url=' + encodeURIComponent('https://webtools-labs.com/fuyou-no-kabe-keisan/');
 
     wallList.innerHTML = applicable.map(function (w) {
       var crossed = income >= w.amount;
