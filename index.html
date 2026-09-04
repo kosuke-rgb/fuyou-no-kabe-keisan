@@ -39,6 +39,34 @@
   "inLanguage": "ja"
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "扶養の壁はいくつありますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "代表的なものだけで100万円・103万円・106万円・130万円・150万円・201万円の6段階があります。それぞれ住民税・所得税・社会保険料・配偶者控除など、影響する制度が異なるため、年収がどのラインに近いかによって注意すべきポイントが変わります。" }
+    },
+    {
+      "@type": "Question",
+      "name": "103万円の壁を超えるとどうなりますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "103万円を超えると本人に所得税がかかり始めます。2025年以降の税制改正で基礎控除などが見直されているため、以前の「103万円」の基準がそのまま当てはまらないケースもありますが、目安として広く使われています。" }
+    },
+    {
+      "@type": "Question",
+      "name": "106万円・130万円の壁は何が違いますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "従業員数など一定の条件を満たす企業でパート勤務している場合、106万円を超えると社会保険への加入義務が発生することがあります。一方130万円は、そうした条件に当てはまらない場合でも、配偶者の扶養から外れて自分で社会保険に加入する必要が出てくる基準です。勤務先の規模や労働時間によってどちらが先に関わってくるかが変わります。" }
+    },
+    {
+      "@type": "Question",
+      "name": "壁を超えたら必ず損をしますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "一時的に手取りが減ることはありますが、社会保険に加入すれば将来の年金額が増えるなどのメリットもあります。単純に「壁を超えない方が得」とは言い切れないため、働き方や将来設計に応じて判断することが大切です。" }
+    }
+  ]
+}
+</script>
 <style>
 :root {
   --bg: #ffffff;
@@ -156,6 +184,19 @@ footer.site-footer {
 }
 footer.site-footer p { margin: 0 0 0.5rem; }
 footer.site-footer a { color: var(--accent); }
+
+.faq-item { border-bottom: 1px solid var(--line); padding: 0.9rem 0; }
+.faq-item:last-child { border-bottom: none; }
+.faq-item summary {
+  cursor: pointer; font-weight: 700; font-size: 0.92rem; list-style: none;
+  position: relative; padding-right: 1.6rem;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: '+'; position: absolute; right: 0; top: 0; color: var(--accent); font-weight: 700; font-size: 1.1rem;
+}
+.faq-item[open] summary::after { content: '−'; }
+.faq-item p { margin: 0.7rem 0 0; color: var(--muted); font-size: 0.88rem; }
 </style>
 </head>
 <body>
@@ -214,6 +255,26 @@ footer.site-footer a { color: var(--accent); }
       data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
+
+  <section>
+    <h2>よくある質問</h2>
+    <details class="faq-item">
+      <summary>扶養の壁はいくつありますか？</summary>
+      <p>代表的なものだけで100万円・103万円・106万円・130万円・150万円・201万円の6段階があります。それぞれ住民税・所得税・社会保険料・配偶者控除など、影響する制度が異なるため、年収がどのラインに近いかによって注意すべきポイントが変わります。</p>
+    </details>
+    <details class="faq-item">
+      <summary>103万円の壁を超えるとどうなりますか？</summary>
+      <p>103万円を超えると本人に所得税がかかり始めます。2025年以降の税制改正で基礎控除などが見直されているため、以前の「103万円」の基準がそのまま当てはまらないケースもありますが、目安として広く使われています。</p>
+    </details>
+    <details class="faq-item">
+      <summary>106万円・130万円の壁は何が違いますか？</summary>
+      <p>従業員数など一定の条件を満たす企業でパート勤務している場合、106万円を超えると社会保険への加入義務が発生することがあります。一方130万円は、そうした条件に当てはまらない場合でも、配偶者の扶養から外れて自分で社会保険に加入する必要が出てくる基準です。</p>
+    </details>
+    <details class="faq-item">
+      <summary>壁を超えたら必ず損をしますか？</summary>
+      <p>一時的に手取りが減ることはありますが、社会保険に加入すれば将来の年金額が増えるなどのメリットもあります。単純に「壁を超えない方が得」とは言い切れないため、働き方や将来設計に応じて判断することが大切です。</p>
+    </details>
+  </section>
 
   <section class="contact-box">
     <h2>ご意見・追加してほしい機能</h2>
