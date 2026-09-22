@@ -78,6 +78,16 @@
       "@type": "Question",
       "name": "壁を超えたら必ず損をしますか？",
       "acceptedAnswer": { "@type": "Answer", "text": "一時的に手取りが減ることはありますが、社会保険に加入すれば将来の年金額が増えるなどのメリットもあります。単純に「壁を超えない方が得」とは言い切れないため、働き方や将来設計に応じて判断することが大切です。" }
+    },
+    {
+      "@type": "Question",
+      "name": "学生の場合、社会人と注意すべき壁は違いますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "学生アルバイトの場合、親の扶養に入っているケースが中心となるため、100万円(住民税)・103万円(所得税・親の扶養控除)・106万円/130万円(社会保険)が主な確認ポイントです。配偶者を対象にした150万円・201万円の配偶者特別控除の壁は、学生アルバイトには基本的に関係ありません。" }
+    },
+    {
+      "@type": "Question",
+      "name": "一度扶養から外れたら、翌年また扶養に戻れますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "扶養の判定は年単位で行われるため、今年の年収が壁を超えて扶養から外れても、翌年の年収見込みが基準以下であれば、あらためて扶養に入り直すことができます。ただし社会保険の扶養は将来の見込み年収で判定されるため、外れる・戻るタイミングは勤務先や年金事務所への手続きが必要です。" }
     }
   ]
 }
@@ -157,6 +167,11 @@ h2 { font-size: 1.05rem; font-weight: 700; margin: 0 0 1rem; }
 .wall-status { font-size: 0.78rem; margin-top: 0.35rem; font-weight: 700; }
 .wall-status.crossed { color: var(--crossed); }
 .wall-status.remaining { color: var(--accent); }
+
+.ref-table { overflow-x: auto; }
+.ref-table table { width: 100%; border-collapse: collapse; font-size: 0.86rem; min-width: 460px; }
+.ref-table th, .ref-table td { padding: 0.5rem 0.5rem; border-bottom: 1px solid var(--line); text-align: left; }
+.ref-table td.num { font-variant-numeric: tabular-nums; text-align: right; }
 
 .disclaimer { font-size: 0.78rem; color: var(--muted); margin-top: 1rem; }
 
@@ -239,6 +254,12 @@ footer.site-footer a { color: var(--accent); }
   </div>
 
   <section>
+    <h2>「扶養の壁」とは何か、なぜ複数あるのか</h2>
+    <p>「扶養の壁」とは、アルバイト・パートの年収が一定額を超えると、本人や扶養している家族の税金・社会保険料の負担が変わる、その境目の金額のことです。壁が複数あるのは、影響する制度が「本人の住民税」「本人の所得税」「本人の社会保険」「扶養する側の配偶者控除」というように、それぞれ別の法律・別の基準で決まっているためです。</p>
+    <p>そのため「103万円さえ超えなければ大丈夫」という単純な話ではなく、学生が親の扶養に入っている場合と、主婦(主夫)が配偶者の扶養に入っている場合とでは、注意すべき壁の種類や順番が変わります。本ツールは、扶養してくれている相手と勤務先の規模を選んだ上で、自分に関係のある壁だけを表示します。</p>
+  </section>
+
+  <section>
     <h2>あなたの状況を入力</h2>
     <div class="field-row">
       <div class="field">
@@ -271,6 +292,24 @@ footer.site-footer a { color: var(--accent); }
       <a class="share-btn share-fb" id="shareFb" href="#" target="_blank" rel="noopener">Facebookでシェア</a>
       <a class="share-btn share-hatena" id="shareHatena" href="#" target="_blank" rel="noopener">はてブする</a>
     </div>
+  </section>
+
+  <section>
+    <h2>扶養の壁 早見表</h2>
+    <div class="ref-table">
+      <table>
+        <thead><tr><th>金額</th><th>名称</th><th>影響する制度</th></tr></thead>
+        <tbody>
+          <tr><td>100万円</td><td>住民税の壁</td><td>本人に住民税(所得割)がかかり始める</td></tr>
+          <tr><td>103万円</td><td>所得税の壁</td><td>本人に所得税がかかり始める。親の扶養控除にも影響</td></tr>
+          <tr><td>106万円</td><td>社会保険加入の壁(条件付き)</td><td>従業員51人以上等の勤務先で社会保険への加入義務が発生</td></tr>
+          <tr><td>130万円</td><td>社会保険の扶養の壁</td><td>親・配偶者の社会保険の扶養から外れる</td></tr>
+          <tr><td>150万円</td><td>配偶者特別控除の壁</td><td>配偶者を扶養する側の控除額が段階的に減り始める</td></tr>
+          <tr><td>201万円</td><td>配偶者特別控除消滅の壁</td><td>配偶者特別控除がなくなる</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="disclaimer">106万円の壁は、勤務先の従業員数・週の労働時間・雇用見込み期間などの条件を満たした場合のみ適用されます。条件に当てはまらない場合は130万円が実質的な社会保険の壁になります。</p>
   </section>
 
   <div class="ad-slot">
@@ -316,6 +355,14 @@ footer.site-footer a { color: var(--accent); }
     <details class="faq-item">
       <summary>壁を超えたら必ず損をしますか？</summary>
       <p>一時的に手取りが減ることはありますが、社会保険に加入すれば将来の年金額が増えるなどのメリットもあります。単純に「壁を超えない方が得」とは言い切れないため、働き方や将来設計に応じて判断することが大切です。</p>
+    </details>
+    <details class="faq-item">
+      <summary>学生の場合、社会人と注意すべき壁は違いますか？</summary>
+      <p>学生アルバイトの場合、親の扶養に入っているケースが中心となるため、100万円（住民税）・103万円（所得税・親の扶養控除）・106万円/130万円（社会保険）が主な確認ポイントです。配偶者を対象にした150万円・201万円の配偶者特別控除の壁は、学生アルバイトには基本的に関係ありません。</p>
+    </details>
+    <details class="faq-item">
+      <summary>一度扶養から外れたら、翌年また扶養に戻れますか？</summary>
+      <p>扶養の判定は年単位で行われるため、今年の年収が壁を超えて扶養から外れても、翌年の年収見込みが基準以下であれば、あらためて扶養に入り直すことができます。ただし社会保険の扶養は将来の見込み年収で判定されるため、外れる・戻るタイミングは勤務先や年金事務所への手続きが必要です。</p>
     </details>
   </section>
 
