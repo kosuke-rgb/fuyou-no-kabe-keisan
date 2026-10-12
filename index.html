@@ -61,6 +61,16 @@
   "mainEntity": [
     {
       "@type": "Question",
+      "name": "年末までにあと何時間働けるか計算できますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "はい。このページの「年末まであといくら・何時間働ける？」に、1月からもらった給与の合計・時給・年末までに受け取る給料の回数・超えたくない壁を入れると、残りの金額と勤務時間の目安が分かります。税金の壁は1月〜12月に支払われた給与で判定するため、12月勤務分が翌年1月払いの場合は今年の収入に含めません。" }
+    },
+    {
+      "@type": "Question",
+      "name": "社会保険の扶養は年収130万円未満なら大丈夫ですか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "社会保険（健康保険）の扶養は、1月〜12月の合計ではなく「これから1年間の収入の見込み」で判断されます。毎月の給料が108,334円（19〜22歳は125,000円）を超える状態が続くと、年の合計が130万円未満でも扶養から外れる場合があります。一時的な収入増なら、勤務先の証明で扶養にとどまれることもあります。" }
+    },
+    {
+      "@type": "Question",
       "name": "扶養の壁はいくつありますか？",
       "acceptedAnswer": { "@type": "Answer", "text": "2026年（令和8年分）の収入の場合、代表的なものは119万円（本人の住民税）・130万円（社会保険の扶養。19〜22歳は150万円）・136万円（親の扶養控除・配偶者控除の対象）・178万円（本人の所得税）です。配偶者の扶養に入っているなら169万円・207万円（配偶者特別控除）、19〜22歳の子なら159万円・197万円（親の特定親族特別控除）も関わります。なお社会保険加入の「106万円の壁」は2026年10月1日に撤廃されました。それぞれ住民税・所得税・社会保険料・配偶者控除など、影響する制度が異なるため、年収がどのラインに近いかによって注意すべきポイントが変わります。" }
     },
@@ -258,6 +268,7 @@ footer.site-footer a { color: var(--accent); }
 .breadcrumb { font-size: 0.78rem; color: var(--muted); margin-bottom: 1.1rem; }
 .breadcrumb a { color: var(--accent); text-decoration: none; }
 .breadcrumb a:hover { text-decoration: underline; }
+.field-hint { font-size: 0.76rem; color: var(--muted); margin-top: 0.3rem; }
 </style>
 </head>
 <body>
@@ -266,7 +277,7 @@ footer.site-footer a { color: var(--accent); }
   <header class="masthead">
     <h1>扶養の壁チェッカー</h1>
     <p class="lede">年収の見込み額を入れるだけで、住民税・所得税・社会保険・配偶者控除に関わる扶養の壁のうち、どこまで超えているか、次の壁まであといくらかをまとめて確認できます。</p>
-    <span class="updated-note">基準額 最終確認日: 2026年10月2日（2026年＝令和8年分の収入が前提。令和8年度税制改正、19〜22歳の150万円基準、2026年10月1日の106万円の壁撤廃に対応済み）</span>
+    <span class="updated-note">基準額 最終確認日: 2026年10月12日（2026年＝令和8年分の収入が前提。令和8年度税制改正、19〜22歳の150万円基準、2026年10月1日の106万円の壁撤廃に対応済み）</span>
     <p class="ad-disclosure" style="font-size:0.75rem;opacity:0.7;margin:0.5rem 0 0;">※当サイトはアフィリエイト広告（PR）を利用しています。</p>
   </header>
 
@@ -321,6 +332,63 @@ footer.site-footer a { color: var(--accent); }
       <a class="share-btn share-fb" id="shareFb" href="#" target="_blank" rel="noopener">Facebookでシェア</a>
       <a class="share-btn share-hatena" id="shareHatena" href="#" target="_blank" rel="noopener">はてブする</a>
     </div>
+  </section>
+
+  <section id="remain">
+    <h2>年末まであといくら・何時間働ける？</h2>
+    <p>1月から今月までにもらった給与の合計と時給を入れると、選んだ壁を超えないために、年末までにあといくら・何時間働けるかを計算します。</p>
+    <div class="field-row">
+      <div class="field">
+        <label for="earned">1月からこれまでにもらった給与の合計（円）</label>
+        <input type="number" id="earned" min="0" step="1000" value="900000">
+      </div>
+      <div class="field">
+        <label for="wage">時給（円）</label>
+        <input type="number" id="wage" min="0" step="10" value="1200">
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="monthsLeft">年末までに受け取る給料の回数（回）</label>
+        <input type="number" id="monthsLeft" min="1" max="12" step="1" value="3">
+        <div class="field-hint">10月に計算するなら、10月・11月・12月に支払われる3回分</div>
+      </div>
+      <div class="field">
+        <label for="target">超えたくない壁</label>
+        <select id="target">
+          <option value="1190000">119万円（本人の住民税）</option>
+          <option value="1300000">130万円（社会保険の扶養）</option>
+          <option value="1360000" selected>136万円（親の扶養控除・配偶者控除）</option>
+          <option value="1500000">150万円（19〜22歳の社会保険の扶養）</option>
+          <option value="1780000">178万円（本人の所得税）</option>
+        </select>
+      </div>
+    </div>
+    <div class="summary-card" id="remainCard"></div>
+    <p class="disclaimer">税金の壁（119万・136万・178万円など）は、1月〜12月に<strong>支払われた</strong>給与の合計で判定します。12月に働いた分でも、支払いが翌年1月なら翌年の収入です。通勤手当（非課税の範囲）は含めません。社会保険の扶養（130万・150万円）は、年の合計ではなく「これから1年間の見込み」で判断されるため、下の解説もあわせて確認してください。</p>
+  </section>
+
+  <section>
+    <h2>時給別・壁を超えないための1か月の勤務時間の目安</h2>
+    <p>1年を通して同じペースで働く場合の、壁ごとの1か月あたりの勤務時間の上限の目安です（交通費・残業代なし）。</p>
+    <div class="ref-table" style="overflow-x:auto">
+      <table style="white-space:nowrap">
+        <thead><tr><th>壁（月あたりの金額）</th><th class="num">時給1,100円</th><th class="num">時給1,200円</th><th class="num">時給1,300円</th><th class="num">時給1,500円</th></tr></thead>
+        <tbody>
+          <tr><td>119万円（月99,166円）</td><td class="num">90時間</td><td class="num">82時間</td><td class="num">76時間</td><td class="num">66時間</td></tr>
+          <tr><td>130万円（月108,333円）</td><td class="num">98時間</td><td class="num">90時間</td><td class="num">83時間</td><td class="num">72時間</td></tr>
+          <tr><td>136万円（月113,333円）</td><td class="num">103時間</td><td class="num">94時間</td><td class="num">87時間</td><td class="num">75時間</td></tr>
+          <tr><td>150万円（月125,000円）</td><td class="num">113時間</td><td class="num">104時間</td><td class="num">96時間</td><td class="num">83時間</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="disclaimer">月の時間は年額÷12÷時給で、1時間未満は切り捨てています。週に直すと、時給1,200円で136万円なら週21.8時間ほどです。従業員51人以上の勤務先では、週20時間以上働くと年収に関係なく社会保険に加入することになります（昼間の学生は原則対象外）。時給からの細かい計算は<a href="https://webtools-labs.com/jikyu-nenshu-keisan/">時給から年収・月収を計算するツール</a>でもできます。</p>
+  </section>
+
+  <section>
+    <h2>社会保険の扶養は「月収」でも見られる</h2>
+    <p>税金の扶養（136万円など）は1月〜12月の収入の合計で決まりますが、<strong>社会保険（健康保険）の扶養は「これから1年間の収入の見込み」</strong>で判断されます。目安は月108,334円（130万円÷12）、19〜22歳なら月125,000円（150万円÷12）です。年の合計が130万円未満でも、毎月の給料がこの額を超える状態が続くと、扶養から外れるよう求められることがあります。</p>
+    <p>一方で、繁忙期のシフト増などで一時的に収入が増えただけなら、勤務先が「一時的な増加」であることを証明すれば、扶養にとどまれる場合があります（2023年10月からの制度）。どちらも扶養している家族の勤務先（健康保険組合など）の判断になるため、心配なときは早めに確認しましょう。</p>
   </section>
 
   <section>
@@ -381,6 +449,14 @@ footer.site-footer a { color: var(--accent); }
 
   <section>
     <h2>よくある質問</h2>
+    <details class="faq-item">
+      <summary>年末までにあと何時間働けるか計算できますか？</summary>
+      <p>はい。このページの「年末まであといくら・何時間働ける？」に、1月からもらった給与の合計・時給・年末までに受け取る給料の回数・超えたくない壁を入れると、残りの金額と勤務時間の目安が分かります。税金の壁は1月〜12月に支払われた給与で判定するため、12月勤務分が翌年1月払いの場合は今年の収入に含めません。</p>
+    </details>
+    <details class="faq-item">
+      <summary>社会保険の扶養は年収130万円未満なら大丈夫ですか？</summary>
+      <p>社会保険（健康保険）の扶養は、1月〜12月の合計ではなく「これから1年間の収入の見込み」で判断されます。毎月の給料が108,334円（19〜22歳は125,000円）を超える状態が続くと、年の合計が130万円未満でも扶養から外れる場合があります。一時的な収入増なら、勤務先の証明で扶養にとどまれることもあります。</p>
+    </details>
     <details class="faq-item">
       <summary>扶養の壁はいくつありますか？</summary>
       <p>2026年（令和8年分）の収入の場合、代表的なものは119万円（本人の住民税）・130万円（社会保険の扶養。19〜22歳は150万円）・136万円（親の扶養控除・配偶者控除の対象）・178万円（本人の所得税）です。配偶者の扶養に入っているなら169万円・207万円（配偶者特別控除）、19〜22歳の子なら159万円・197万円（親の特定親族特別控除）も関わります。なお社会保険加入の「106万円の壁」は2026年10月1日に撤廃されました。それぞれ住民税・所得税・社会保険料・配偶者控除など、影響する制度が異なるため、年収がどのラインに近いかによって注意すべきポイントが変わります。</p>
@@ -599,6 +675,38 @@ footer.site-footer a { color: var(--accent); }
       contactStatus.className = 'contact-status err';
     });
   });
+})();
+</script>
+<script>
+(function () {
+  // 年末までに働ける残りの金額・時間（2026-10-12追加）
+  var earned = document.getElementById('earned');
+  var wage = document.getElementById('wage');
+  var monthsLeft = document.getElementById('monthsLeft');
+  var target = document.getElementById('target');
+  var card = document.getElementById('remainCard');
+  function yen(n) { return Math.round(n).toLocaleString('ja-JP') + '円'; }
+  function render() {
+    var e = Math.max(0, Number(earned.value) || 0);
+    var w = Math.max(0, Number(wage.value) || 0);
+    var m = Math.min(12, Math.max(1, Math.floor(Number(monthsLeft.value) || 1)));
+    var t = Number(target.value);
+    var remain = t - e;
+    if (remain <= 0) {
+      card.innerHTML = '<div class="label">年末までに働ける残りの金額</div><div class="value">0円</div><div class="sub">すでに' + yen(t) + 'に達しています（' + yen(e - t) + '超過）。</div>';
+      return;
+    }
+    var hours = w > 0 ? Math.floor(remain / w) : 0;
+    var perMonth = remain / m;
+    var perMonthHours = w > 0 ? Math.floor(perMonth / w) : 0;
+    card.innerHTML = '<div class="label">年末までに働ける残りの金額（' + yen(t) + 'まで）</div>' +
+      '<div class="value">あと' + yen(remain) + '</div>' +
+      '<div class="sub">時給' + yen(w) + 'なら約' + hours.toLocaleString('ja-JP') + '時間。残り' + m + '回の給料で割ると、1回あたり' + yen(perMonth) + '（約' + perMonthHours + '時間）までです。</div>' +
+      (perMonth > 108334 ? '<div class="sub">※1回あたりの給料が月108,334円（19〜22歳は月125,000円）を超える状態が続くと、年の合計が壁より少なくても、社会保険の扶養から外れるよう求められることがあります。</div>' : '');
+  }
+  [earned, wage, monthsLeft].forEach(function (el) { el.addEventListener('input', render); });
+  target.addEventListener('change', render);
+  render();
 })();
 </script>
 </body>
